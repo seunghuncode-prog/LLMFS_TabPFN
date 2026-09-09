@@ -1,0 +1,153 @@
+{
+  "project_name": "LLMFS_TabPFN_3DATA_LIGHT_1x5_HOLDOUT",
+  "preset": "three_dataset_light_1x5_holdout_adaptive_hybrid",
+  "data_root": "../../DATA",
+  "results_root": "../RESULTS_LIGHT_1X5_HOLDOUT",
+  "datasets": {
+    "golub": {
+      "task": "Distinguish acute lymphoblastic leukemia, ALL (class 0), from acute myeloid leukemia, AML (class 1).",
+      "sample_regimes": ["full", 24]
+    },
+    "colon": {
+      "task": "Distinguish normal colon tissue (class 0) from abnormal or tumor colon tissue (class 1).",
+      "sample_regimes": ["full", 24]
+    },
+    "metabric": {
+      "task": "Distinguish living or censored-at-observation breast cancer patients (class 0) from deceased-event patients (class 1).",
+      "sample_regimes": ["full", 64]
+    }
+  },
+  "llm": {
+    "model": "gemini-3.5-flash-lite",
+    "thinking_level": "minimal",
+    "chunk_size": 2000,
+    "real_runs": 3,
+    "anonymous_runs": 1,
+    "run_seeds": [7, 19, 31],
+    "poll_seconds": 30,
+    "max_retries": 3,
+    "reuse_existing_scores": true,
+    "reuse_scores_root": "../../2차/RESULTS_1X5_K200"
+  },
+  "semantic_mapping": {
+    "real_name_column": "semantic_name",
+    "required_datasets": ["colon", "golub"],
+    "minimum_gene_symbol_coverage": {
+      "colon": 0.2,
+      "golub": 0.5
+    },
+    "allow_accession_fallback": true
+  },
+  "cv": {
+    "outer_repeats": 1,
+    "outer_folds": 5,
+    "outer_split_strategy": "generated_stratified",
+    "outer_split_seed": 20260818,
+    "score_inner_folds": 3,
+    "score_inner_repeats": 1,
+    "tuning_inner_folds": 3
+  },
+  "seeds": {
+    "global_seed": 20260818,
+    "model_seed": 20260818,
+    "subset_seed": 20260818,
+    "data_score_seed": 20260819,
+    "selector_tie_seed": 20260819,
+    "tuning_seed": 20260820,
+    "bootstrap_seed": 20260821
+  },
+  "feature_selection": {
+    "methods": [
+      "text",
+      "hybrid",
+      "adaptive_hybrid",
+      "data_only",
+      "mi",
+      "lasso",
+      "random",
+      "catboost_rfe",
+      "no_fs"
+    ],
+    "primary_k": 128,
+    "k_values": [128],
+    "hybrid_k_sensitivity": [32, 64],
+    "hybrid_alpha_primary": 0.5,
+    "hybrid_alpha_grid": [0.25, 0.5, 0.75],
+    "random_seeds": [7, 19, 31],
+    "permutation_seeds": [7, 19, 31],
+    "lasso_c_grid": [0.1, 1.0],
+    "catboost_rfe_iterations": 100,
+    "catboost_rfe_steps": 3
+  },
+  "nested_tuning": {
+    "enabled": true,
+    "evaluator": "logistic",
+    "strategy": "stratified_holdout",
+    "inner_folds": 1,
+    "validation_fraction": 0.25,
+    "k_grid": [32, 64, 128],
+    "alpha_grid": [0.25, 0.5, 0.75],
+    "auroc_tolerance": 0.005,
+    "logistic_c": 1.0,
+    "tie_break_order": ["log_loss", "smaller_k", "alpha_near_0.5"]
+  },
+  "stage_scope": {
+    "semantic_sample_regimes": ["full", "minimum"],
+    "semantic_methods": ["text", "hybrid", "adaptive_hybrid"],
+    "reuse_core_real_for_semantic": true,
+    "compatibility_sample_regimes": ["full"],
+    "compatibility_methods": ["text", "hybrid", "adaptive_hybrid", "data_only", "mi", "random", "no_fs"],
+    "compatibility_baseline": "no_fs",
+    "reuse_core_tabpfn_for_compatibility": true
+  },
+  "models": {
+    "primary": "tabpfn",
+    "compatibility": ["tabpfn", "catboost", "logistic"],
+    "tabpfn": {
+      "version": "v2.5",
+      "checkpoint": "../../../tabpfn-v2.5-classifier-v2.5_default.ckpt/tabpfn-v2.5-classifier-v2.5_default.ckpt",
+      "n_estimators": 8,
+      "device": "cuda",
+      "fit_mode": "fit_preprocessors",
+      "ignore_pretraining_limits_for_no_fs": true
+    },
+    "catboost": {
+      "iterations": 500,
+      "depth": 6,
+      "learning_rate": 0.03,
+      "l2_leaf_reg": 3.0,
+      "task_type": "GPU",
+      "devices": "0"
+    },
+    "logistic": {
+      "c_grid": [0.01, 0.1, 1.0, 10.0],
+      "max_iter": 5000
+    }
+  },
+  "metrics": {
+    "primary": "auroc",
+    "ece_bins": 10,
+    "probability_clip": 1e-7,
+    "confidence_level": 0.95,
+    "bootstrap_iterations": 5000,
+    "holm_correction": true,
+    "practical_tie_auroc": 0.005
+  },
+  "embedding": {
+    "enabled": true,
+    "outer_repeats": "first",
+    "outer_folds": "all",
+    "n_fold": 3,
+    "primary_k": 200,
+    "methods": ["adaptive_hybrid", "random"],
+    "umap_neighbors": 15,
+    "umap_min_dist": 0.1
+  },
+  "execution": {
+    "enabled_stages": ["core"],
+    "require_cuda_for_tabpfn": true,
+    "resume": true,
+    "save_fold_scores": true,
+    "fail_fast": false
+  }
+}

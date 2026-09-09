@@ -1,0 +1,30 @@
+{
+  "created_at": "2026-08-13T13:33:32.753659+00:00",
+  "pipeline_version": "4.0.0",
+  "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+  "executable": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "cuda_available": true,
+  "cuda_device": "NVIDIA GeForce RTX 4060 Ti",
+  "torch_cuda_runtime": "13.0",
+  "torch_error": null,
+  "tabpfn_checkpoint": {
+    "path": "C:\\Users\\user\\Desktop\\2026 캡스톤_2\\tabpfn-v2.5-classifier-v2.5_default.ckpt\\tabpfn-v2.5-classifier-v2.5_default.ckpt",
+    "exists": true,
+    "is_file": true,
+    "size_bytes": 42935499
+  },
+  "packages": {
+    "numpy": "1.26.4",
+    "pandas": "3.0.2",
+    "scipy": "1.16.3",
+    "scikit-learn": "1.8.0",
+    "catboost": "1.2.10",
+    "tabpfn": "8.1.0",
+    "tabpfn-extensions": "0.5.0",
+    "google-genai": "2.17.0",
+    "torch": "2.11.0+cu130",
+    "umap-learn": "0.5.12"
+  },
+  "config_hash": "631e2aee38f387e16f98b1c7ac9bc0c249db4a063623075b53f86d3071a55ee8"
+}

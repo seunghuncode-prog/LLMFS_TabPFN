@@ -1,0 +1,3 @@
+﻿stage,dataset,sample_regime,repeat,fold,method,condition,k,alpha,selector_seed,model,status,prediction_path,wall_seconds,error
+smoke,colon,full,1,1,mi,name_invariant,8,0.5,7,logistic,completed,C:\Users\user\Desktop\2026 캡스톤_2\2차 실험_학회 포스터\3차\RESULTS_NESTED_3X5\predictions\colon__mi__name_invariant__logistic__r01f01__0080c55da957cba3.csv,6.228043600000092,
+smoke,colon,full,1,1,random,name_invariant,8,0.5,7,logistic,completed,C:\Users\user\Desktop\2026 캡스톤_2\2차 실험_학회 포스터\3차\RESULTS_NESTED_3X5\predictions\colon__random__name_invariant__logistic__r01f01__093d469dcf0c066e.csv,0.199194400000124,

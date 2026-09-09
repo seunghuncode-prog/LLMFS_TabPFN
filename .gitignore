@@ -1,0 +1,17 @@
+# Python and local environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+# Credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

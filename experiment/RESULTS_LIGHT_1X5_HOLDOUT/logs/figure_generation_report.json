@@ -1,0 +1,50 @@
+{
+  "prediction_rows": 44862,
+  "repeat_metric_rows": 68,
+  "fold_metric_rows": 332,
+  "fold_variability_rows": 68,
+  "summary_rows": 68,
+  "stability_rows": 68,
+  "selection_frequency_rows": 22067,
+  "primary_oof_metric_rows": 54,
+  "paired_bootstrap_rows": 48,
+  "compatibility_rows": 0,
+  "semantic_rows": 0,
+  "nested_tuning_decision_rows": 300,
+  "completion": [
+    {
+      "stage": "smoke",
+      "expected": 2,
+      "completed": 2,
+      "remaining": 0,
+      "complete": true
+    },
+    {
+      "stage": "core",
+      "expected": 330,
+      "completed": 330,
+      "remaining": 0,
+      "complete": true
+    },
+    {
+      "stage": "TOTAL",
+      "expected": 332,
+      "completed": 332,
+      "remaining": 0,
+      "complete": true
+    }
+  ],
+  "figures": [
+    "C:\\Users\\user\\Desktop\\2026 캡스톤_2차\\2차 실험_KDMS\\3차\\RESULTS_LIGHT_1X5_HOLDOUT\\figures\\core_auroc_vs_sample_size.png",
+    "C:\\Users\\user\\Desktop\\2026 캡스톤_2차\\2차 실험_KDMS\\3차\\RESULTS_LIGHT_1X5_HOLDOUT\\figures\\core_auroc_performance_heatmap.png",
+    "C:\\Users\\user\\Desktop\\2026 캡스톤_2차\\2차 실험_KDMS\\3차\\RESULTS_LIGHT_1X5_HOLDOUT\\figures\\selection_stability_mean_kuncheva.png",
+    "C:\\Users\\user\\Desktop\\2026 캡스톤_2차\\2차 실험_KDMS\\3차\\RESULTS_LIGHT_1X5_HOLDOUT\\figures\\selection_stability_mean_jaccard.png",
+    "C:\\Users\\user\\Desktop\\2026 캡스톤_2차\\2차 실험_KDMS\\3차\\RESULTS_LIGHT_1X5_HOLDOUT\\figures\\core_resource_usage.png",
+    "C:\\Users\\user\\Desktop\\2026 캡스톤_2차\\2차 실험_KDMS\\3차\\RESULTS_LIGHT_1X5_HOLDOUT\\figures\\nested_tuning_choices.png",
+    "C:\\Users\\user\\Desktop\\2026 캡스톤_2차\\2차 실험_KDMS\\3차\\RESULTS_LIGHT_1X5_HOLDOUT\\figures\\paired_bootstrap_auroc.png",
+    "C:\\Users\\user\\Desktop\\2026 캡스톤_2차\\2차 실험_KDMS\\3차\\RESULTS_LIGHT_1X5_HOLDOUT\\figures\\core_golub_calibration.png",
+    "C:\\Users\\user\\Desktop\\2026 캡스톤_2차\\2차 실험_KDMS\\3차\\RESULTS_LIGHT_1X5_HOLDOUT\\figures\\core_colon_calibration.png",
+    "C:\\Users\\user\\Desktop\\2026 캡스톤_2차\\2차 실험_KDMS\\3차\\RESULTS_LIGHT_1X5_HOLDOUT\\figures\\core_metabric_calibration.png"
+  ],
+  "errors": []
+}
